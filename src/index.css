@@ -14,3 +14,7 @@ body {
   color: #ffffff;
   min-width: 280px;
 }
+
+a {
+  text-decoration: none;
+}

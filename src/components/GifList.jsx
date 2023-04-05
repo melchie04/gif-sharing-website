@@ -3,18 +3,19 @@ import Masonry from "react-masonry-css";
 import "../styles/MasonryStyles.css";
 import GifItem from "./GifItem";
 
-const breakpointColumnsObj = {
-  default: 4,
-  1100: 3,
-  800: 2,
-  500: 1,
-};
+const GifList = ({ gifs }) => {
+  const colByGifs =
+    gifs.length === 1 ? 1 : gifs.length === 2 ? 2 : gifs.length === 3 ? 3 : 4;
 
-const GifList = ({ gifs, loading }) => {
   return (
     <>
       <Masonry
-        breakpointCols={breakpointColumnsObj}
+        breakpointCols={{
+          default: colByGifs,
+          1100: colByGifs > 3 ? 3 : colByGifs,
+          800: colByGifs > 2 ? 2 : colByGifs,
+          500: 1,
+        }}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >

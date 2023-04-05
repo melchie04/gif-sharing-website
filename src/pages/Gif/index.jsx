@@ -10,25 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import GlowingButton from "../../components/GlowingButton";
 import CustomBox from "../../components/CustomBox";
+import GifContainer from "../../components/GifContainer";
 
 const index = () => {
-  const {
-    selectedGif: { title, embed_url, link, url },
-  } = useGifContext();
+  const { selectedGif } = useGifContext();
   return (
     <CustomBox>
-      <Box
-        sx={{
-          borderRadius: "10px",
-          border: "2px solid",
-          borderColor: "primary.main",
-          overflow: "hidden",
-          backgroundColor: "primary.main",
-          maxWidth: "100%",
-        }}
-      >
-        <img src={url} alt={title} style={{ width: "100%" }} />
-      </Box>
+      <GifContainer {...selectedGif} GifContainer={selectedGif} />
       <Box
         color="transparent"
         display="flex"
@@ -43,12 +31,12 @@ const index = () => {
             <FontAwesomeIcon icon={faArrowLeft} /> Back
           </GlowingButton>
         </Link>
-        <a href={link} target="_blank">
+        <a href={selectedGif.url} target="_blank">
           <GlowingButton>
             <FontAwesomeIcon icon={faPaperPlane} /> Share GIFs
           </GlowingButton>
         </a>
-        <a href={embed_url} target="_blank">
+        <a href={selectedGif.embed_url} target="_blank">
           <GlowingButton>
             <FontAwesomeIcon icon={faCode} /> Embed GIFs
           </GlowingButton>

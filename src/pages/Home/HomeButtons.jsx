@@ -8,7 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import GlowingButton from "../../components/GlowingButton";
 
-const HomeButtons = () => {
+const HomeButtons = ({
+  handleFavoritesClick,
+  handleTrendingClick,
+  handleRandomClick,
+}) => {
   return (
     <Box
       color="transparent"
@@ -19,13 +23,13 @@ const HomeButtons = () => {
       py="2rem"
       gap="2rem"
     >
-      <GlowingButton>
+      <GlowingButton onClick={handleFavoritesClick}>
         <FontAwesomeIcon icon={faHeart} /> Favorites
       </GlowingButton>
-      <GlowingButton>
+      <GlowingButton onClick={handleTrendingClick}>
         <FontAwesomeIcon icon={faArrowTrendUp} /> Trending GIFs
       </GlowingButton>
-      <GlowingButton>
+      <GlowingButton onClick={handleRandomClick}>
         <FontAwesomeIcon icon={faRandom} /> Random GIFs
       </GlowingButton>
     </Box>

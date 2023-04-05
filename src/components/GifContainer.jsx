@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useGifContext } from "../context/ContextProvider";
 
-const GifItem = ({
+const GifContainer = ({
   id,
   title,
   embed_url,
@@ -14,25 +12,7 @@ const GifItem = ({
     original: { url },
   },
 }) => {
-  const { rendered, setSelectedGif, addToFavorites, removeFromFavorites } =
-    useGifContext();
-  const [loading, setLoading] = useState(true);
-
-  const handleImageLoad = () => {
-    setLoading(false);
-  };
-
-  const handleGifClick = () => {
-    setSelectedGif({
-      id,
-      title,
-      embed_url,
-      url: link,
-      images: {
-        original: { url },
-      },
-    });
-  };
+  const { rendered, addToFavorites, removeFromFavorites } = useGifContext();
 
   const handleHeartClick = () => {
     if (rendered === "favorites") {
@@ -59,36 +39,19 @@ const GifItem = ({
   };
 
   return (
-    <>
-      <Box sx={{ position: "relative" }}>
-        {loading ? (
-          <CircularProgress
-            color="primary"
-            sx={{
-              position: "absolute",
-              top: "1rem",
-              left: "45%",
-            }}
-          />
-        ) : null}
-        <Link to={`/gif/${id}`}>
+    <Box sx={{ position: "relative" }}>
+      {url ? (
+        <>
           <img
             src={url}
             alt={title}
-            width="100%"
-            height="100%"
-            onClick={handleGifClick}
-            onLoad={handleImageLoad}
             style={{
+              maxWidth: "100%",
               borderRadius: "10px",
               border: "2px solid",
               borderColor: "#e474e4",
-              cursor: "pointer",
-              visibility: loading ? "hidden" : "visible",
             }}
           />
-        </Link>
-        {loading ? null : (
           <Box
             onClick={handleHeartClick}
             sx={{
@@ -131,10 +94,10 @@ const GifItem = ({
               />
             )}
           </Box>
-        )}
-      </Box>
-    </>
+        </>
+      ) : null}
+    </Box>
   );
 };
 
-export default GifItem;
+export default GifContainer;

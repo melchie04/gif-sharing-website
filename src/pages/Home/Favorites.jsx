@@ -1,14 +1,14 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useGifContext } from "../../context/ContextProvider";
 import CustomBox from "../../components/CustomBox";
 import GifList from "../../components/GifList";
 import Loader from "../../components/Loader";
 
-const TrendingList = () => {
-  const { trending, loading } = useGifContext();
+const Favorites = () => {
+  const { favorites, loading } = useGifContext();
 
   return (
     <CustomBox>
@@ -17,13 +17,13 @@ const TrendingList = () => {
       ) : (
         <>
           <Typography variant="h6" color="primary" py="1rem">
-            <FontAwesomeIcon icon={faArrowTrendUp} /> Trending GIFs
+            <FontAwesomeIcon icon={faHeart} /> Favorites
           </Typography>
-          <GifList gifs={trending} />
+          {favorites ? <GifList gifs={favorites} /> : null}
         </>
       )}
     </CustomBox>
   );
 };
 
-export default TrendingList;
+export default Favorites;

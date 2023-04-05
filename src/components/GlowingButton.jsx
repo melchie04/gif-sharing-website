@@ -2,8 +2,8 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { keyframes } from "@mui/styled-engine";
 
-const GlowingButton = ({ children }) => {
-  return <AnimatedButton>{children}</AnimatedButton>;
+const GlowingButton = ({ onClick, children }) => {
+  return <AnimatedButton onClick={onClick}>{children}</AnimatedButton>;
 };
 
 const glowingAnimation = keyframes`

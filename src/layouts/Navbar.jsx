@@ -2,6 +2,7 @@ import React from "react";
 import { Fab, useScrollTrigger, Typography, Box } from "@mui/material";
 import logo from "../assets/icons/gifshare.png";
 import JumpingLogo from "../components/JumpingLogo";
+import { Link } from "react-router-dom";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -66,15 +67,17 @@ const Navbar = () => {
           <Box id="back-to-top-anchor" width="50px" mt="30px">
             <JumpingLogo logo={logo} />
           </Box>
-          <Typography
-            variant="h3"
-            component="div"
-            color="primary"
-            fontFamily="Alkatra"
-            pt="2rem"
-          >
-            GifShare
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h3"
+              component="div"
+              color="primary"
+              fontFamily="Alkatra"
+              pt="2rem"
+            >
+              GifShare
+            </Typography>
+          </Link>
         </Box>
       </ElevationScroll>
     </>
