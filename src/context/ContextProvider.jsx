@@ -31,7 +31,7 @@ const ContextProvider = ({ children }) => {
   const getTrending = async () => {
     dispatch({ type: Actions.LOADING });
     const res = await axios.get(
-      `${baseUrl}/trending?api_key=${apiKey}&limit=10`
+      `${baseUrl}/trending?api_key=${apiKey}&limit=30`
     );
     dispatch({ type: Actions.GET_TRENDING, payload: res.data.data });
   };
@@ -45,7 +45,7 @@ const ContextProvider = ({ children }) => {
   const getSearchResults = async (query) => {
     dispatch({ type: Actions.LOADING });
     const res = await axios.get(
-      `${baseUrl}/search?api_key=${apiKey}&q=${query}&limit=10`
+      `${baseUrl}/search?api_key=${apiKey}&q=${query}&limit=15`
     );
     dispatch({ type: Actions.GET_SEARCH, payload: res.data.data });
   };
@@ -83,8 +83,6 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     getTrending();
   }, []);
-
-  console.log(state.trending);
 
   return (
     <GifContext.Provider
