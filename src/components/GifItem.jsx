@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useGifContext } from "../context/ContextProvider";
+import Loader from "./Loader";
 
 const GifItem = ({
   id,
@@ -13,13 +14,18 @@ const GifItem = ({
   images: {
     original: { url },
   },
+  imgLoadCount,
+  setImgLoadCount,
 }) => {
   const { rendered, setSelectedGif, addToFavorites, removeFromFavorites } =
     useGifContext();
-  const [loading, setLoading] = useState(true);
+  const [imgLoading, setImgLoading] = useState(true);
 
   const handleImageLoad = () => {
-    setLoading(false);
+    if (rendered !== "random") {
+      setImgLoadCount(imgLoadCount + 1);
+    }
+    setImgLoading(false);
   };
 
   const handleGifClick = () => {
@@ -60,17 +66,8 @@ const GifItem = ({
 
   return (
     <>
+      {rendered !== "random" ? null : imgLoading ? <Loader /> : null}
       <Box sx={{ position: "relative" }}>
-        {loading ? (
-          <CircularProgress
-            color="primary"
-            sx={{
-              position: "absolute",
-              top: "1rem",
-              left: "45%",
-            }}
-          />
-        ) : null}
         <Link to={`/gif/${id}`}>
           <img
             src={url}
@@ -84,11 +81,11 @@ const GifItem = ({
               border: "2px solid",
               borderColor: "#e474e4",
               cursor: "pointer",
-              visibility: loading ? "hidden" : "visible",
+              visibility: imgLoading ? "hidden" : "visible",
             }}
           />
         </Link>
-        {loading ? null : (
+        {imgLoading ? null : (
           <Box
             onClick={handleHeartClick}
             sx={{

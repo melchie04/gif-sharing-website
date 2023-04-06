@@ -45,7 +45,7 @@ const ContextProvider = ({ children }) => {
   const getSearchResults = async (query) => {
     dispatch({ type: Actions.LOADING });
     const res = await axios.get(
-      `${baseUrl}/search?api_key=${apiKey}&q=${query}&limit=15`
+      `${baseUrl}/search?api_key=${apiKey}&q=${query}&limit=30`
     );
     dispatch({ type: Actions.GET_SEARCH, payload: res.data.data });
   };
