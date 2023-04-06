@@ -6,6 +6,8 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import "@sweetalert2/theme-dark/dark.css";
 import { reducer } from "../reducer/Reducer";
 import Actions from "../utils/Actions";
 
@@ -58,9 +60,15 @@ const ContextProvider = ({ children }) => {
     if (!existingItem) {
       const items = [...storedItems, gif];
       window.localStorage.setItem("myFavorites", JSON.stringify(items));
-      alert("Added to Favorites");
+      Swal.fire({
+        icon: "success",
+        title: "Your gif has been added to Favorites!",
+      });
     } else {
-      alert("Already Exist");
+      Swal.fire({
+        icon: "error",
+        title: "This gif already exists in the Favorites!",
+      });
     }
   };
 
@@ -69,7 +77,10 @@ const ContextProvider = ({ children }) => {
       JSON.parse(window.localStorage.getItem("myFavorites")) || [];
     const items = storedItems.filter((item) => item.id !== gif.id);
     window.localStorage.setItem("myFavorites", JSON.stringify(items));
-    alert("Removed from Favorites");
+    Swal.fire({
+      icon: "success",
+      title: "Your gif has been removed from Favorites!",
+    });
     getFavorites();
   };
 
