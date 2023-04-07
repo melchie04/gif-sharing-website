@@ -1,7 +1,8 @@
+import React from "react";
 import { Box } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useGifContext } from "../context/ContextProvider";
+import { useGifContext } from "../../context/ContextProvider";
 
 const GifContainer = ({
   id,
