@@ -33,7 +33,7 @@
 </p>
   
 <br />
-<p align="left">☕ Buy me a coffee? Here is my PayPal:</p>
+<p align="left">☕ Buy me a coffee?</p>
 <p align="left">
   <a href="https://www.paypal.com/paypalme/melchorcallos04" target="_blank"><img alt="Paypal" src="https://img.shields.io/badge/paypal-melchorcallos04@gmail.com-blue?style=flat-square&logo=paypal"></a>
 </p>
